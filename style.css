@@ -389,3 +389,15 @@ input[type="month"] {
   min-width: 0;
   max-width: 100%;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  box-sizing: border-box;
+  z-index: 20;
+}
+body { padding-top: 72px; }
+html { scroll-padding-top: 80px; }
