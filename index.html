@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Household Hub</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2f6f5e">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Household Hub</h1>
+      <div id="header-names"></div>
+    </div>
+    <button id="settings-btn">Settings</button>
+  </header>
+  <div id="backup-banner" hidden></div>
+
+  <main>
+    <section id="lists" class="tab active">
+      <h2>Lists</h2>
+
+      <div class="row">
+        <select id="list-select"></select>
+        <button id="list-new">New list</button>
+      </div>
+
+      <form id="list-form">
+        <input id="list-input" list="list-suggestions" placeholder="Add item (commas add many)" autocomplete="off" required>
+        <button type="submit">Add</button>
+      </form>
+      <datalist id="list-suggestions"></datalist>
+
+      <p id="list-progress" class="hint"></p>
+      <ul id="list-items"></ul>
+
+      <div class="row">
+        <button id="list-share">Share list</button>
+        <button id="list-uncheck">Uncheck all</button>
+        <button id="list-clear">Clear done</button>
+      </div>
+      <div class="row">
+        <button id="list-rename">Rename list</button>
+        <button id="list-delete" class="danger">Delete list</button>
+      </div>
+    </section>
+
+    <section id="finance" class="tab">
+      <h2>Finance</h2>
+
+      <div class="month-nav">
+        <button id="fin-prev">&lt;</button>
+        <strong id="fin-month-label"></strong>
+        <button id="fin-next">&gt;</button>
+      </div>
+
+      <div class="subtabs" id="fin-subtabs">
+        <button data-panel="fin-overview" class="active">Overview</button>
+        <button data-panel="fin-commitments">Commitments</button>
+        <button data-panel="fin-calendar">Calendar</button>
+        <button data-panel="fin-chart">Chart</button>
+      </div>
+
+      <div id="fin-overview" class="fin-panel active">
+        <div class="card" id="fin-summary"></div>
+
+        <h3>Income this month</h3>
+        <ul id="income-list"></ul>
+
+        <h3>Fixed income (added every month)</h3>
+        <form id="fixed-form">
+          <input id="fi-name" placeholder="Name (e.g. Salary)" required>
+          <input id="fi-amount" type="number" step="0.01" min="0.01" placeholder="Amount" required>
+          <input id="fi-day" type="number" min="1" max="31" placeholder="Day received (1-31)" required>
+          <div class="row">
+            <button type="submit">Save</button>
+            <button type="button" id="fi-remove" class="danger">Remove</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="fin-commitments" class="fin-panel">
+        <form id="commit-form">
+          <input id="commit-name" placeholder="Name (e.g. Rent)" required>
+          <input id="commit-amount" type="number" step="0.01" min="0.01" placeholder="Amount" required>
+          <select id="commit-category">
+            <option>Housing</option>
+            <option>Bills</option>
+            <option>Installment</option>
+            <option>Insurance</option>
+            <option>Education</option>
+            <option>Transport</option>
+            <option>Other</option>
+          </select>
+          <input id="commit-date" type="date" required>
+          <label class="check">
+            <input type="checkbox" id="commit-recurring"> Repeat every month
+          </label>
+          <button type="submit">Add commitment</button>
+        </form>
+        <ul id="commit-list"></ul>
+      </div>
+      <div id="fin-chart" class="fin-panel">
+        <div class="card">
+          <div class="legend">
+            <span><span class="sw inc"></span>Income</span>
+            <span><span class="sw exp"></span>Spent</span>
+          </div>
+          <div id="chart-bars" class="chart-box"></div>
+          <table id="chart-table" class="chart-table"></table>
+        </div>
+
+        <h3 id="chart-cat-title"></h3>
+        <ul id="chart-cats"></ul>
+
+        <p class="hint">Income = fixed income + extra income. Spent = paid commitments + expenses. Tap a bar to open that month. Months you never opened show 0.</p>
+      </div>
+
+      <div id="fin-calendar" class="fin-panel">
+        <div class="card">
+          <div id="cal-grid" class="cal-grid"></div>
+          <div class="cal-legend">
+            <span class="dot exp"></span> Expense
+            <span class="dot inc"></span> Income
+            <span class="dot due"></span> Commitment due
+          </div>
+        </div>
+
+        <h3 id="cal-day-title"></h3>
+        <ul id="cal-day-list"></ul>
+
+        <h3>Add for this day</h3>
+        <form id="cal-form">
+          <select id="cal-type">
+            <option value="expense">Expense</option>
+            <option value="income">Extra income</option>
+          </select>
+          <input id="cal-amount" type="number" step="0.01" min="0.01" placeholder="Amount" required>
+          <input id="cal-name" placeholder="Note (optional)">
+          <select id="cal-category">
+            <option>Groceries</option>
+            <option>Eating out</option>
+            <option>Transport</option>
+            <option>Household</option>
+            <option>Kids</option>
+            <option>Health</option>
+            <option>Shopping</option>
+            <option>Other</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="notes" class="tab">
+      <h2>Notes</h2>
+
+      <form id="note-form">
+        <select id="note-type">
+          <option value="note">Note</option>
+          <option value="checklist">Checklist</option>
+          <option value="link">Link</option>
+        </select>
+        <input id="note-title" placeholder="Title" required>
+        <select id="note-category"></select>
+        <select id="note-collection"></select>
+        <input id="note-tags" placeholder="Tags (separate with commas)">
+        <input id="note-url" placeholder="Web address (https://...)" hidden>
+        <textarea id="note-text" rows="4" placeholder="Write your note..."></textarea>
+        <div class="row">
+          <button type="submit" id="note-save">Add</button>
+          <button type="button" id="note-cancel" hidden>Cancel edit</button>
+        </div>
+      </form>
+
+      <div class="subtabs" id="note-views">
+        <button data-view="notes" class="active">Notes</button>
+        <button data-view="favourites">Favourites</button>
+        <button data-view="trash">Trash</button>
+      </div>
+
+      <input id="note-search" placeholder="Search...">
+      <div class="row">
+        <select id="note-filter-cat"></select>
+        <select id="note-filter-type">
+          <option value="">All types</option>
+          <option value="note">Notes</option>
+          <option value="checklist">Checklists</option>
+          <option value="link">Links</option>
+        </select>
+      </div>
+      <div class="row">
+        <select id="note-filter-coll"></select>
+      </div>
+
+      <div id="tag-filter-bar" class="card" hidden>
+        <span id="tag-filter-text"></span>
+        <button id="tag-filter-clear">Clear</button>
+      </div>
+
+      <details class="card">
+        <summary>Manage collections</summary>
+        <form id="coll-form">
+          <input id="coll-name" placeholder="New collection (e.g. Windows)" required>
+          <button type="submit">Add</button>
+        </form>
+        <ul id="coll-list"></ul>
+      </details>
+
+      <button id="empty-trash" class="danger" hidden>Empty trash</button>
+      <ul id="note-list"></ul>
+    </section>
+
+    <section id="diary" class="tab">
+      <h2>Diary</h2>
+
+      <div id="diary-lock" class="card" hidden>
+        <p><strong>Diary is locked.</strong></p>
+        <form id="unlock-form">
+          <input id="unlock-pin" type="password" inputmode="numeric" maxlength="8" placeholder="Enter PIN" autocomplete="off" required>
+          <button type="submit" id="unlock-btn">Unlock</button>
+        </form>
+        <p id="unlock-msg"></p>
+        <button id="pin-forgot" class="link-btn">Forgot PIN?</button>
+      </div>
+
+      <div id="diary-content" hidden>
+        <button id="lock-now" hidden>Lock diary now</button>
+
+        <div class="card" id="onthisday" hidden>
+          <strong>On this day</strong>
+          <div id="onthisday-list"></div>
+        </div>
+
+        <form id="diary-form">
+          <input id="diary-date" type="date" required>
+          <select id="diary-mood">
+            <option value="">Mood (optional)</option>
+            <option value="😊 Happy">😊 Happy</option>
+            <option value="😌 Calm">😌 Calm</option>
+            <option value="🤩 Excited">🤩 Excited</option>
+            <option value="😴 Tired">😴 Tired</option>
+            <option value="😟 Stressed">😟 Stressed</option>
+            <option value="😢 Sad">😢 Sad</option>
+          </select>
+          <textarea id="diary-text" rows="6" placeholder="Write about your day..." required></textarea>
+          <div class="row">
+            <button type="submit" id="diary-save">Save entry</button>
+            <button type="button" id="diary-cancel" hidden>Cancel edit</button>
+          </div>
+        </form>
+
+        <input id="diary-search" placeholder="Search diary...">
+        <p id="diary-count" class="hint"></p>
+        <ul id="diary-list"></ul>
+
+        <details class="card">
+          <summary>Diary lock (PIN)</summary>
+          <p id="pin-state"></p>
+          <form id="pin-form">
+            <input id="pin-current" type="password" inputmode="numeric" maxlength="8" placeholder="Current PIN" autocomplete="off" hidden>
+            <input id="pin-new" type="password" inputmode="numeric" maxlength="8" placeholder="New PIN (4 to 8 digits)" autocomplete="off" required>
+            <input id="pin-confirm" type="password" inputmode="numeric" maxlength="8" placeholder="Repeat new PIN" autocomplete="off" required>
+            <button type="submit" id="pin-save">Set PIN</button>
+          </form>
+          <button id="pin-remove" class="danger" hidden>Remove PIN</button>
+          <p id="pin-msg"></p>
+        </details>
+      </div>
+    </section>
+
+    <section id="settings" class="tab">
+      <h2>Settings</h2>
+      <form id="settings-form">
+        <label for="set-me">Your name</label>
+        <input id="set-me" placeholder="Your name">
+        <label for="set-currency">Currency symbol</label>
+        <input id="set-currency" placeholder="RM" maxlength="5">
+        <button type="submit">Save settings</button>
+        <p id="settings-msg"></p>
+      </form>
+
+      <h3>Backup</h3>
+      <p id="backup-status"></p>
+      <p id="storage-status"></p>
+      <p>Your data is saved only on this phone. Back up regularly.</p>
+      <div class="row">
+        <button id="export-btn">Save to file</button>
+        <button id="share-btn">Share backup</button>
+      </div>
+      <p>Restore from a backup file (this replaces current data):</p>
+      <input type="file" id="import-file" accept=".json">
+    </section>
+
+  </main>
+
+  <nav>
+    <button data-tab="lists" class="active">Lists</button>
+    <button data-tab="finance">Finance</button>
+    <button data-tab="notes">Notes</button>
+    <button data-tab="diary">Diary</button>
+  </nav>
+
+  <script src="js/common.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="app.js"></script>
+  <script src="js/finance.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/diary.js"></script>
+  <script src="js/lists.js"></script>
+  <script src="js/backup.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
