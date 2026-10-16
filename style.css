@@ -368,6 +368,24 @@ li.list-divider {
 #home-money .link-btn { margin-top: 8px; }
 
 html, body {
-  touch-action: pan-x pan-y;
+  touch-action: pan-y;
+  overflow-x: hidden;
+  max-width: 100%;
   -webkit-text-size-adjust: 100%;
+}
+input[type="date"],
+input[type="month"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: left;
+}
+#diary-form,
+#diary-form > * {
+  min-width: 0;
+  max-width: 100%;
 }

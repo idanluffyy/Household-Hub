@@ -1,4 +1,4 @@
-const CACHE = 'household-hub-v16';
+const CACHE = 'household-hub-v17';
 const FILES = ['./', 'index.html', 'style.css', 'app.js', 'js/common.js', 'js/settings.js', 'js/finance.js', 'js/calendar.js', 'js/chart.js', 'js/notes.js', 'js/diary.js', 'js/lists.js', 'js/home.js', 'js/backup.js', 'manifest.json'];
 
 self.addEventListener('install', e => {
