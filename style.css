@@ -366,3 +366,8 @@ li.list-divider {
 #home-notes li { cursor: pointer; }
 .home-note { flex-direction: column; align-items: stretch; }
 #home-money .link-btn { margin-top: 8px; }
+
+html, body {
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+}

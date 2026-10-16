@@ -7,3 +7,8 @@ document.querySelectorAll('nav button').forEach(btn => {
     btn.classList.add('active');
   });
 });
+
+// No pinch zoom on iPhone
+['gesturestart', 'gesturechange', 'gestureend'].forEach(name => {
+  document.addEventListener(name, e => e.preventDefault());
+});
