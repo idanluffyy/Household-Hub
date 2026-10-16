@@ -19,7 +19,24 @@
   <div id="backup-banner" hidden></div>
 
   <main>
-    <section id="lists" class="tab active">
+
+    <section id="home" class="tab active">
+      <h2 id="home-greeting"></h2>
+      <p id="home-date" class="hint"></p>
+
+      <div class="card" id="home-money"></div>
+
+      <h3>Bills due soon</h3>
+      <ul id="home-due"></ul>
+
+      <h3>Lists</h3>
+      <ul id="home-lists"></ul>
+
+      <h3>Pinned notes</h3>
+      <ul id="home-notes"></ul>
+    </section>
+
+    <section id="lists" class="tab">
       <h2>Lists</h2>
 
       <div class="row">
@@ -297,7 +314,8 @@
   </main>
 
   <nav>
-    <button data-tab="lists" class="active">Lists</button>
+    <button data-tab="home" class="active">Home</button>
+    <button data-tab="lists">Lists</button>
     <button data-tab="finance">Finance</button>
     <button data-tab="notes">Notes</button>
     <button data-tab="diary">Diary</button>
@@ -312,6 +330,7 @@
   <script src="js/notes.js"></script>
   <script src="js/diary.js"></script>
   <script src="js/lists.js"></script>
+  <script src="js/home.js"></script>
   <script src="js/backup.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
