@@ -1,11 +1,11 @@
 {
-  "name": "Household Hub",
-  "short_name": "Hub",
+  "name": "Idan & Fiteyii Hub",
+  "short_name": "I&F Hub",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2f6f5e",
+  "background_color": "#0b132b",
+  "theme_color": "#0f3d4a",
   "icons": [
     {
       "src": "public/icons/icon-192.png",

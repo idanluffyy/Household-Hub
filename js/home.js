@@ -159,3 +159,13 @@ document.addEventListener('visibilitychange', () => {
 });
 
 renderHome();
+
+// live clock
+function tickClock() {
+  const clockEl = document.getElementById('home-time');
+  if (clockEl) {
+    clockEl.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  }
+}
+tickClock();
+setInterval(tickClock, 15000);

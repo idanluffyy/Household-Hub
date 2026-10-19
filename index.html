@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Household Hub</title>
+  <title>Idan &amp; Fiteyii Hub</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2f6f5e">
   <link rel="stylesheet" href="style.css">
@@ -11,18 +11,23 @@
 <body>
   <header>
     <div>
-      <h1>Household Hub</h1>
+      <h1>Idan &amp; Fiteyii Hub</h1>
       <div id="header-names"></div>
     </div>
-    <button id="settings-btn">Settings</button>
+    <button id="settings-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+    </button>
   </header>
   <div id="backup-banner" hidden></div>
 
   <main>
 
     <section id="home" class="tab active">
-      <h2 id="home-greeting"></h2>
-      <p id="home-date" class="hint"></p>
+      <div class="hero">
+        <div id="home-time" class="hero-time"></div>
+        <h2 id="home-greeting"></h2>
+        <p id="home-date" class="hint"></p>
+      </div>
 
       <div class="card" id="home-money"></div>
 
@@ -299,6 +304,17 @@
         <p id="settings-msg"></p>
       </form>
 
+      <h3>Appearance</h3>
+      <div id="wallpaper-grid" class="wp-grid"></div>
+      <div class="row">
+        <label for="theme-mode">Mode</label>
+        <select id="theme-mode">
+          <option value="auto">Auto (follow phone)</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+
       <h3>Backup</h3>
       <p id="backup-status"></p>
       <p id="storage-status"></p>
@@ -314,14 +330,30 @@
   </main>
 
   <nav>
-    <button data-tab="home" class="active">Home</button>
-    <button data-tab="lists">Lists</button>
-    <button data-tab="finance">Finance</button>
-    <button data-tab="notes">Notes</button>
-    <button data-tab="diary">Diary</button>
+    <button data-tab="home" class="active">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </button>
+    <button data-tab="lists">
+      <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span>Lists</span>
+    </button>
+    <button data-tab="finance">
+      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span>Finance</span>
+    </button>
+    <button data-tab="notes">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Notes</span>
+    </button>
+    <button data-tab="diary">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Diary</span>
+    </button>
   </nav>
 
   <script src="js/common.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/settings.js"></script>
   <script src="app.js"></script>
   <script src="js/finance.js"></script>
