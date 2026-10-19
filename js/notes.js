@@ -1,7 +1,7 @@
 // Notes v3: types, categories, collections, tags, trash (saved in this phone's browser)
 const NOTES_KEY = 'hubNotes';
 const COLL_KEY = 'hubCollections';
-const NOTE_CATEGORIES = ['Home', 'Important', 'Finance', 'Vehicle', 'Health', 'Kids', 'Ideas', 'Learning', 'Other'];
+const NOTE_CATEGORIES = ['Home', 'Important', 'Finance', 'Vehicle', 'Health', 'Kids', 'Ideas', 'Learning', 'Coding', 'IT', 'Microsoft 365', 'Power Apps', 'Cybersecurity', 'Personal', 'Other'];
 const NOTE_TYPES = { note: 'Note', checklist: 'Checklist', link: 'Link' };
 
 function loadNotes() {
