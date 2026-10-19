@@ -46,6 +46,7 @@ function importWdik(data) {
     const type = it.type === 'checklist' ? 'checklist' : (it.type === 'link' ? 'link' : 'note');
 
     const catName = wdikCategoryName(data, it.category);
+    if (catName && !NOTE_CATEGORIES.includes(catName)) addNoteCategory(catName);
     const category = NOTE_CATEGORIES.includes(catName) ? catName : 'Other';
     const tags = parseTags((it.tags || []).join(','));
     if (catName && category === 'Other' && catName !== 'Other') {

@@ -653,3 +653,10 @@ select option {
   background: var(--opt-bg);
   color: var(--text);
 }
+
+#cat-list button {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+#cat-list button.danger { background: var(--danger); }
