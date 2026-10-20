@@ -141,6 +141,7 @@ function resetNoteForm() {
   ntText.value = '';
   ntSave.textContent = 'Add';
   ntCancel.hidden = true;
+  if (typeof closeNoteSheet === 'function') closeNoteSheet();
   updateNoteForm();
 }
 
@@ -349,7 +350,7 @@ function renderNotes() {
         ntSave.textContent = 'Save changes';
         ntCancel.hidden = false;
         updateNoteForm();
-        noteForm.scrollIntoView();
+        openNoteSheet('Edit ' + NOTE_TYPES[n.type].toLowerCase());
       });
 
       const del = el('button', 'danger', 'Delete');
@@ -359,7 +360,10 @@ function renderNotes() {
         renderNotes();
       });
 
-      actions.append(pin, star, edit, del);
+      const share = el('button', '', 'Share');
+      share.addEventListener('click', () => shareNote(n));
+
+      actions.append(pin, star, edit, share, del);
     }
 
     li.appendChild(actions);

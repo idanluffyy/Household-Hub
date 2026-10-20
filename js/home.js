@@ -68,7 +68,7 @@ function renderHome() {
   [
     ['Income', totals.income, false],
     ['Spent (paid)', totals.spent, false],
-    ['Still to pay', totals.unpaid, false],
+    ['To pay', totals.unpaid, false],
     ['Left', totals.left, totals.left < 0]
   ].forEach(r => {
     const row = el('div', 'sum-row');

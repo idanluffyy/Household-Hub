@@ -49,3 +49,13 @@ document.getElementById('settings-btn').addEventListener('click', () => {
 
 fillSettingsForm();
 applySettings();
+
+// Settings sections (Profile, Theme, Notes, Backup)
+document.querySelectorAll('#set-subtabs button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#set-subtabs button').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.set-panel').forEach(p => p.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.panel).classList.add('active');
+  });
+});

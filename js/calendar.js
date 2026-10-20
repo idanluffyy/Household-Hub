@@ -27,6 +27,19 @@ function addDayRow(ul, text, amount, onDelete) {
 function renderDayList(mo) {
   const info = dayInfo(mo, calSelected);
   document.getElementById('cal-day-title').textContent = calSelected;
+  const dayExtra = info.incomes.filter(x => x.kind !== 'fixed').reduce((s, x) => s + x.amount, 0);
+  const dayExp = info.expenses.reduce((s, x) => s + x.amount, 0);
+  const daySum = document.getElementById('cal-day-summary');
+  daySum.innerHTML = '';
+  [
+    ['Extra income', '+ ' + money(dayExtra), dayExtra > 0 ? 'pos' : ''],
+    ['Expenses', '- ' + money(dayExp), dayExp > 0 ? 'neg' : '']
+  ].forEach(r => {
+    const row = el('div', 'sum-row');
+    row.appendChild(el('span', '', r[0]));
+    row.appendChild(el('strong', r[2], r[1]));
+    daySum.appendChild(row);
+  });
   const ul = document.getElementById('cal-day-list');
   ul.innerHTML = '';
   let count = 0;

@@ -124,7 +124,7 @@ document.getElementById('import-file').addEventListener('change', e => {
 });
 document.getElementById('backup-banner').addEventListener('click', () => {
   document.getElementById('settings-btn').click();
-  document.getElementById('backup-status').scrollIntoView();
+  document.querySelector('#set-subtabs button[data-panel="set-backup"]').click();
 });
 
 updateBackupStatus();

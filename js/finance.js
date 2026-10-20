@@ -160,7 +160,7 @@ function renderFinSummary() {
   const rows = [
     ['Income', t.income, false],
     ['Spent (paid)', t.spent, false],
-    ['Still to pay', t.unpaid, false],
+    ['To pay', t.unpaid, false],
     ['Left', t.left, t.left < 0]
   ];
   rows.forEach(r => {
