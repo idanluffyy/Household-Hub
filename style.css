@@ -764,3 +764,44 @@ html[data-scheme="dark"] { --sheet: rgba(22, 26, 40, 0.97); }
 
 .set-panel { display: none; }
 .set-panel.active { display: block; animation: tabIn 0.25s ease both; }
+
+/* ---------- attachments ---------- */
+.att-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+.att-btn {
+  background: var(--item);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.att-btn svg { width: 18px; height: 18px; color: var(--accent); }
+.att-btn.recording { background: var(--danger); color: #fff; animation: pulse 1s infinite; }
+.att-btn.recording svg { color: #fff; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+#att-draft, .att-wrap { display: flex; flex-direction: column; gap: 8px; }
+.att-wrap { margin: 6px 0 10px; }
+.att-item {
+  background: var(--item);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px;
+}
+.att-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.att-name { font-size: 0.8rem; color: var(--muted); word-break: break-all; }
+.att-item img { display: block; max-width: 100%; max-height: 220px; border-radius: 10px; margin-top: 8px; }
+.att-item video { width: 100%; max-height: 260px; border-radius: 10px; margin-top: 8px; }
+.att-item audio { width: 100%; margin-top: 8px; }
+.att-open {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  margin-top: 8px;
+  padding: 7px 12px;
+  font-size: 0.85rem;
+}
+.att-remove { background: var(--danger); box-shadow: none; padding: 4px 10px; font-size: 0.8rem; }

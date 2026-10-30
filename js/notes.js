@@ -142,6 +142,7 @@ function resetNoteForm() {
   ntSave.textContent = 'Add';
   ntCancel.hidden = true;
   if (typeof closeNoteSheet === 'function') closeNoteSheet();
+  if (typeof attReset === 'function') attReset();
   updateNoteForm();
 }
 
@@ -291,6 +292,9 @@ function renderNotes() {
     }
 
     if (n.text) li.appendChild(el('div', 'note-text', n.text));
+    if (typeof attBlock === 'function' && n.attachments && n.attachments.length > 0) {
+      li.appendChild(attBlock(n));
+    }
 
     if (n.tags.length > 0) {
       const chips = el('div', 'tag-row');
@@ -317,6 +321,7 @@ function renderNotes() {
       const gone = el('button', 'danger', 'Delete forever');
       gone.addEventListener('click', () => {
         if (!confirm('Delete this forever?')) return;
+        if (typeof attDeleteMany === 'function') attDeleteMany(n.attachments);
         notes = notes.filter(x => x.id !== n.id);
         saveNotes();
         renderNotes();
@@ -350,6 +355,7 @@ function renderNotes() {
         ntSave.textContent = 'Save changes';
         ntCancel.hidden = false;
         updateNoteForm();
+        if (typeof attLoad === 'function') attLoad(n);
         openNoteSheet('Edit ' + NOTE_TYPES[n.type].toLowerCase());
       });
 
@@ -408,6 +414,7 @@ noteForm.addEventListener('submit', e => {
   n.collectionId = ntCollection.value;
   n.tags = parseTags(ntTags.value);
   n.updatedAt = now;
+  n.attachments = (typeof attCommit === 'function') ? attCommit() : (n.attachments || []);
   n.url = type === 'link' ? url : '';
 
   if (type === 'checklist') {

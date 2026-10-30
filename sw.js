@@ -1,5 +1,5 @@
-const CACHE = 'household-hub-v24';
-const FILES = ['./', 'index.html', 'style.css', 'app.js', 'js/common.js', 'js/theme.js', 'js/settings.js', 'js/finance.js', 'js/calendar.js', 'js/chart.js', 'js/notes.js', 'js/categories.js', 'js/note-sheet.js', 'js/import-notes.js', 'js/diary.js', 'js/lists.js', 'js/home.js', 'js/backup.js', 'manifest.json'];
+const CACHE = 'household-hub-v25';
+const FILES = ['./', 'index.html', 'style.css', 'app.js', 'js/common.js', 'js/theme.js', 'js/settings.js', 'js/finance.js', 'js/calendar.js', 'js/chart.js', 'js/notes.js', 'js/categories.js', 'js/note-sheet.js', 'js/attachments.js', 'js/import-notes.js', 'js/diary.js', 'js/lists.js', 'js/home.js', 'js/backup.js', 'manifest.json'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));

@@ -69,6 +69,20 @@ function noteToText(n) {
 
 async function shareNote(n) {
   const text = noteToText(n);
+
+  // send the attached files too, when this phone allows it
+  if (n.attachments && n.attachments.length > 0 && navigator.canShare && typeof attFiles === 'function') {
+    try {
+      const files = await attFiles(n);
+      if (files.length > 0 && navigator.canShare({ files: files })) {
+        await navigator.share({ text: text, files: files });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+
   if (navigator.share) {
     try {
       await navigator.share({ text: text });
