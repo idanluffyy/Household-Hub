@@ -139,7 +139,6 @@
 
         <p class="hint">Income = fixed income + extra income. Spent = paid commitments + expenses. Tap a bar to open that month. Months you never opened show 0.</p>
       </div>
-
       <div id="fin-calendar" class="fin-panel">
         <div class="card">
           <div id="cal-grid" class="cal-grid"></div>
@@ -213,63 +212,7 @@
       <ul id="note-list"></ul>
     </section>
 
-    <section id="diary" class="tab">
-      <h2>Diary</h2>
-
-      <div id="diary-lock" class="card" hidden>
-        <p><strong>Diary is locked.</strong></p>
-        <form id="unlock-form">
-          <input id="unlock-pin" type="password" inputmode="numeric" maxlength="8" placeholder="Enter PIN" autocomplete="off" required>
-          <button type="submit" id="unlock-btn">Unlock</button>
-        </form>
-        <p id="unlock-msg"></p>
-        <button id="pin-forgot" class="link-btn">Forgot PIN?</button>
-      </div>
-
-      <div id="diary-content" hidden>
-        <button id="lock-now" hidden>Lock diary now</button>
-
-        <div class="card" id="onthisday" hidden>
-          <strong>On this day</strong>
-          <div id="onthisday-list"></div>
-        </div>
-
-        <form id="diary-form">
-          <input id="diary-date" type="date" required>
-          <select id="diary-mood">
-            <option value="">Mood (optional)</option>
-            <option value="😊 Happy">😊 Happy</option>
-            <option value="😌 Calm">😌 Calm</option>
-            <option value="🤩 Excited">🤩 Excited</option>
-            <option value="😴 Tired">😴 Tired</option>
-            <option value="😟 Stressed">😟 Stressed</option>
-            <option value="😢 Sad">😢 Sad</option>
-          </select>
-          <textarea id="diary-text" rows="6" placeholder="Write about your day..." required></textarea>
-          <div class="row">
-            <button type="submit" id="diary-save">Save entry</button>
-            <button type="button" id="diary-cancel" hidden>Cancel edit</button>
-          </div>
-        </form>
-
-        <input id="diary-search" placeholder="Search diary...">
-        <p id="diary-count" class="hint"></p>
-        <ul id="diary-list"></ul>
-
-        <details class="card">
-          <summary>Diary lock (PIN)</summary>
-          <p id="pin-state"></p>
-          <form id="pin-form">
-            <input id="pin-current" type="password" inputmode="numeric" maxlength="8" placeholder="Current PIN" autocomplete="off" hidden>
-            <input id="pin-new" type="password" inputmode="numeric" maxlength="8" placeholder="New PIN (4 to 8 digits)" autocomplete="off" required>
-            <input id="pin-confirm" type="password" inputmode="numeric" maxlength="8" placeholder="Repeat new PIN" autocomplete="off" required>
-            <button type="submit" id="pin-save">Set PIN</button>
-          </form>
-          <button id="pin-remove" class="danger" hidden>Remove PIN</button>
-          <p id="pin-msg"></p>
-        </details>
-      </div>
-    </section>
+<section id="receipts" class="tab"></section>
 
     <section id="settings" class="tab">
       <h2>Settings</h2>
@@ -431,15 +374,17 @@
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       <span>Notes</span>
     </button>
-    <button data-tab="diary">
-      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      <span>Diary</span>
+    <button data-tab="receipts">
+      <svg viewBox="0 0 24 24"><path d="M4 2h16v20l-3-2-3 2-3-2-3 2-4-2z"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <span>Receipts</span>
     </button>
   </nav>
 
   <script src="js/common.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/settings.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="src/receipts.js"></script>
   <script src="app.js"></script>
   <script src="js/finance.js"></script>
   <script src="js/calendar.js"></script>
@@ -449,7 +394,6 @@
   <script src="js/note-sheet.js"></script>
   <script src="js/attachments.js"></script>
   <script src="js/import-notes.js"></script>
-  <script src="js/diary.js"></script>
   <script src="js/lists.js"></script>
   <script src="js/home.js"></script>
   <script src="js/backup.js"></script>
