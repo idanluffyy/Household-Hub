@@ -805,3 +805,7 @@ html[data-scheme="dark"] { --sheet: rgba(22, 26, 40, 0.97); }
   font-size: 0.85rem;
 }
 .att-remove { background: var(--danger); box-shadow: none; padding: 4px 10px; font-size: 0.8rem; }
+
+#rcpt-form { flex-direction: column; margin-top: 12px; }
+#rcpt-form input, #rcpt-form select { flex: none; width: 100%; min-width: 0; max-width: 100%; }
+#rcpt-form .check input { width: 20px; }
