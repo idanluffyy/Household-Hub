@@ -100,6 +100,7 @@ const Receipts = {
           link: file.webViewLink
         });
         saveReceipts(list);
+        ReceiptList.refresh();
         status.textContent = '✅ Saved. Total receipts: ' + list.length;
         this.photo = null;
         form.reset();
