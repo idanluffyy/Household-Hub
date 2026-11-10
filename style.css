@@ -809,3 +809,10 @@ html[data-scheme="dark"] { --sheet: rgba(22, 26, 40, 0.97); }
 #rcpt-form { flex-direction: column; margin-top: 12px; }
 #rcpt-form input, #rcpt-form select { flex: none; width: 100%; min-width: 0; max-width: 100%; }
 #rcpt-form .check input { width: 20px; }
+#receipts.active { display: flex; flex-direction: column; gap: 14px; }
+#receipts > div { display: flex; flex-direction: column; gap: 14px; }
+#receipts h2, #receipts h3, #receipts p, #receipts .row, #receipts form { margin: 0; }
+#receipts .row select { min-width: 0; }
+#receipts button { width: 100%; }
+#receipts li button { width: auto; }
+#receipts .check { padding: 4px 0; }
